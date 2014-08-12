@@ -33,12 +33,13 @@ namespace Galeria.Web.Controllers
         [HttpGet]
         public ActionResult ListAllContent()
         {
+             var userContent = new List<DiskContentModel>();
+
             //var actualPath = Session["ActualPath"].ToString();
             var actualFolder = Session["ActualFolder"].ToString();
             var userFiles = _readOnlyRepository.First<Account>(x => x.EMail == User.Identity.Name).Files;
 
-            var userContent = new List<DiskContentModel>();
-
+           
             foreach (var file in userFiles)
             {
                 if (file == null)
@@ -91,7 +92,7 @@ namespace Galeria.Web.Controllers
             var actualPath = Session["ActualPath"].ToString();
             var fileName = Path.GetFileName(fileControl.FileName);
 
-            var serverFolderPath = Server.MapPath("~/App_Data/UploadedFiles/" + actualPath + "/");        
+            var serverFolderPath = Server.MapPath("~/Imagenes/UploadedFiles/" + actualPath + "/");        
             var path = Path.Combine(serverFolderPath, fileName);
 
             var fileInfo = new DirectoryInfo(serverFolderPath + fileName);
@@ -161,7 +162,7 @@ namespace Galeria.Web.Controllers
             }
 
             var actualPath = Session["ActualPath"].ToString();
-            var serverFolderPath = Server.MapPath("~/App_Data/UploadedFiles/" + actualPath + "/" + folderName);
+            var serverFolderPath = Server.MapPath("~/Imagenes/UploadedFiles/" + actualPath + "/" + folderName);
 
             var folderInfo = new DirectoryInfo(serverFolderPath);
 
@@ -181,7 +182,7 @@ namespace Galeria.Web.Controllers
                 IsDirectory = true,
                 ModifiedDate = DateTime.Now,
                 Type = "",
-                Url = Server.MapPath("~/App_Data/UploadedFiles/" + actualPath)
+                Url = Server.MapPath("~/Imagenes/UploadedFiles/" + actualPath)
             });
 
             var result = Directory.CreateDirectory(serverFolderPath);

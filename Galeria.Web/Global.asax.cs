@@ -48,8 +48,8 @@ namespace Galeria.Web
         }
 
         private void MvcApplication_EndRequest(object sender, EventArgs e)
-        {
-            CurrentSessionContext.Unbind(SessionFactory).Dispose();
+        {//
+            //CurrentSessionContext.Unbind(SessionFactory).Dispose();
         }
 
         private void MvcApplication_BeginRequest(object sender, EventArgs e)
